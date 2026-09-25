@@ -7,10 +7,11 @@
   flex-direction: column;
   background-color: #1a1210;
   color: #f7ede8;
+  isolation: isolate;
 }
 
 /* ==========================================================================
-   Backdrop: Warm Amber / Terracotta Ambience with 100px Blur + SVG Grain
+   Backdrop: Warm Amber / Terracotta Ambience with 50px Blur + SVG Grain
    ========================================================================== */
 .backdropLayer {
   position: absolute;
@@ -18,22 +19,23 @@
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
+  contain: strict;
+  transform: translateZ(0);
 }
 
 .backdropImage {
   position: absolute;
-  top: -160px;
-  left: -160px;
-  right: -160px;
-  bottom: -160px;
+  top: -80px;
+  left: -80px;
+  right: -80px;
+  bottom: -80px;
   background-image: url('/image/acc1.jpg');
   background-size: cover;
   background-position: center;
-  filter: blur(100px);
-  -webkit-filter: blur(100px);
-  transform: scale(1.15);
+  filter: blur(50px);
+  -webkit-filter: blur(50px);
+  transform: translateZ(0) scale(1.1);
   opacity: 0.85;
-  will-change: filter, transform;
 }
 
 .backdropTint {
@@ -58,6 +60,7 @@
   opacity: 0.36;
   mix-blend-mode: overlay;
   pointer-events: none;
+  transform: translateZ(0);
 }
 
 /* ==========================================================================
