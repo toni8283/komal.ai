@@ -1,0 +1,24 @@
+.waveformWrapper {
+  width: 100%;
+  max-width: 800px;
+  height: 240px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  pointer-events: none;
+}
+
+.waveformCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .waveformWrapper {
+    max-width: 92vw;
+    height: 180px;
+  }
+}

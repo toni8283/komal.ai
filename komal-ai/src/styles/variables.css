@@ -1,0 +1,91 @@
+:root {
+  /* Colors */
+  --bg-warm: #FAF6F0;
+  --bg-warm-rgb: 250, 246, 240;
+  --text-primary: #18181B;
+  --text-secondary: #52525B;
+  --text-light: #A1A1AA;
+  --white: #ffffff;
+  
+  /* Therapist themes */
+  --alex-gradient-from: #FFF0E0;
+  --alex-gradient-via: #F5A623;
+  --alex-gradient-to: #E8751A;
+  --alex-accent: #E8751A;
+  
+  --komal-gradient-from: #FFF0F5;
+  --komal-gradient-via: #F472B6;
+  --komal-gradient-to: #EC4899;
+  --komal-accent: #EC4899;
+  
+  /* Typography */
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Poppins', 'Inter', -apple-system, sans-serif;
+  --font-tagline: 'Plus Jakarta Sans', 'Poppins', -apple-system, sans-serif;
+  
+  /* Muted Warm Stone Grey Tone (from user reference) */
+  --btn-stone-bg: rgba(198, 196, 192, 0.65);
+  --btn-stone-bg-hover: rgba(188, 185, 180, 0.85);
+  --btn-stone-border: rgba(0, 0, 0, 0.06);
+  --btn-stone-text: #222222;
+  
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.25rem;
+  --fs-2xl: 1.5rem;
+  --fs-3xl: 2rem;
+  --fs-4xl: 2.5rem;
+  --fs-5xl: 3.5rem;
+  --fs-display: 4.5rem;
+  
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+  
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+  
+  /* Uniform Button Tokens - Light Surfaces */
+  --btn-light-bg: rgba(255, 255, 255, 0.62);
+  --btn-light-bg-hover: rgba(255, 255, 255, 0.85);
+  --btn-light-text: #18181B;
+  --btn-light-border: rgba(0, 0, 0, 0.08);
+  --btn-light-shadow: 0 2px 12px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  
+  /* Uniform Button Tokens - Dark/Saturated Surfaces */
+  --btn-dark-bg: rgba(255, 255, 255, 0.22);
+  --btn-dark-bg-hover: rgba(255, 255, 255, 0.32);
+  --btn-dark-text: #FFFFFF;
+  --btn-dark-border: rgba(255, 255, 255, 0.35);
+  --btn-dark-shadow: 0 4px 20px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  
+  /* High-end Tactile Noise Grain Texture */
+  --grain-svg: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.09'/%3E%3C/svg%3E");
+  
+  /* Glass effect */
+  --glass-blur: 16px;
+  
+  /* Transitions */
+  --ease-out-soft: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --transition-fast: 200ms var(--ease-out-soft);
+  --transition-normal: 400ms var(--ease-out-soft);
+  --transition-slow: 800ms var(--ease-out-expo);
+}

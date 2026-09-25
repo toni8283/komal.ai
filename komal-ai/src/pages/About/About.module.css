@@ -1,0 +1,270 @@
+.aboutContainer {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: #1a1210;
+  color: #f7ede8;
+}
+
+/* ==========================================================================
+   Backdrop: Warm Amber / Terracotta Ambience with 100px Blur + SVG Grain
+   ========================================================================== */
+.backdropLayer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.backdropImage {
+  position: absolute;
+  top: -160px;
+  left: -160px;
+  right: -160px;
+  bottom: -160px;
+  background-image: url('/image/acc1.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(100px);
+  -webkit-filter: blur(100px);
+  transform: scale(1.15);
+  opacity: 0.85;
+  will-change: filter, transform;
+}
+
+.backdropTint {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      circle at 40% 30%,
+      rgba(215, 125, 76, 0.35) 0%,
+      rgba(40, 24, 20, 0.65) 60%,
+      rgba(20, 12, 10, 0.9) 100%
+    ),
+    linear-gradient(180deg, rgba(20, 12, 10, 0.25) 0%, rgba(20, 12, 10, 0.6) 100%);
+  pointer-events: none;
+}
+
+.grainOverlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  opacity: 0.36;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Main Content Layout
+   ========================================================================== */
+.mainContent {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 130px 10% 90px 10%;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.articleWrap {
+  max-width: 900px;
+}
+
+.title {
+  font-family: var(--font-serif, 'Instrument Serif', 'Cormorant Garamond', serif);
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 400;
+  color: #eedcd0;
+  letter-spacing: -0.015em;
+  margin: 0 0 36px 0;
+  line-height: 1.1;
+}
+
+.titleItalic {
+  font-style: italic;
+  color: #e4c2b0;
+}
+
+.editorialBody {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.paragraph {
+  font-family: var(--font-space, 'Space Grotesk', 'Space Mono', sans-serif);
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+  color: #e0d0c5;
+  margin: 0;
+}
+
+.bulletList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 20px;
+  margin: 4px 0;
+}
+
+.bulletItem {
+  font-family: var(--font-space, 'Space Grotesk', 'Space Mono', sans-serif);
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: #eddcd2;
+  position: relative;
+  line-height: 1.6;
+}
+
+/* Hollow circle bullet icon */
+.bulletItem::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(237, 220, 210, 0.82);
+  background: transparent;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Bottom-Right CTA Button (start talking + arrow)
+   Positioned at the EXACT SAME coordinates as Home page (bottom 48px, right 4.32%)
+   ========================================================================== */
+.ctaWrapper {
+  position: absolute;
+  bottom: 48px;
+  right: 4.32%;
+  display: flex;
+  align-items: center;
+  z-index: 50;
+  pointer-events: auto;
+}
+
+.ctaGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  pointer-events: auto;
+  transition: transform 0.25s ease;
+}
+
+.ctaGroup:hover {
+  transform: translateY(-2px);
+}
+
+.startPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  padding: 0 32px;
+  border-radius: 999px;
+  background: rgba(198, 178, 164, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #1a120e;
+  font-family: var(--font-serif, 'Instrument Serif', 'Cormorant Garamond', serif);
+  font-size: 1.45rem;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.arrowCircle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(198, 178, 164, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #1a120e;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.ctaGroup:hover .startPill,
+.ctaGroup:hover .arrowCircle {
+  background: rgba(220, 202, 190, 0.78);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.ctaGroup:hover .arrowSvg {
+  transform: translate(2px, -2px);
+}
+
+.arrowSvg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.25s ease;
+}
+
+/* ==========================================================================
+   Bottom Disclaimer
+   ========================================================================== */
+.disclaimerWrapper {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  padding: 0 20px;
+}
+
+.disclaimerText {
+  font-family: var(--font-space, 'Space Grotesk', 'Space Mono', sans-serif);
+  font-size: 0.75rem;
+  color: rgba(238, 220, 208, 0.65);
+  letter-spacing: 0.02em;
+  text-align: center;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 900px) {
+  .mainContent {
+    padding: 100px 6% 140px 6%;
+  }
+
+  .ctaWrapper {
+    position: static;
+    margin-top: 36px;
+  }
+
+  .disclaimerWrapper {
+    position: static;
+    margin-top: 40px;
+    padding-bottom: 20px;
+  }
+}

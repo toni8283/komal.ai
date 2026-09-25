@@ -1,0 +1,261 @@
+.historyContainer {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  background-color: #22120e;
+}
+
+.bgImageLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bgBlurredImage {
+  position: absolute;
+  top: -140px;
+  left: -140px;
+  right: -140px;
+  bottom: -140px;
+  background-size: cover;
+  background-position: center 35%;
+  background-repeat: no-repeat;
+  filter: blur(100px);
+  -webkit-filter: blur(100px);
+  transform: scale(1.18);
+  will-change: transform, filter;
+}
+
+.bgVignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 45%, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.32) 100%),
+              linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, transparent 40%, rgba(0, 0, 0, 0.35) 100%);
+  pointer-events: none;
+}
+
+.bgGrainOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  opacity: 0.32;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.topBar {
+  position: absolute;
+  top: 36px;
+  left: 44px;
+  z-index: 60;
+  pointer-events: auto;
+}
+
+.pillButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  padding: 0 24px;
+  border-radius: var(--radius-pill, 999px);
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: #FFFFFF;
+  background: rgba(85, 45, 34, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  cursor: pointer;
+  overflow: hidden;
+  user-select: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.pillButton:hover {
+  background: rgba(105, 58, 44, 0.55);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 5;
+}
+
+.panel {
+  position: relative;
+  width: 100%;
+  max-width: 660px;
+  height: 560px;
+  max-height: 80vh;
+  border-radius: 28px;
+  background: rgba(45, 26, 22, 0.76);
+  backdrop-filter: blur(40px) saturate(140%);
+  -webkit-backdrop-filter: blur(40px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  padding: 30px 36px 36px 36px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.panelHeader {
+  margin-bottom: 24px;
+}
+
+.panelTitle {
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.listContainer {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px 12px 14px 4px;
+  scrollbar-width: thin;
+  box-sizing: border-box;
+}
+
+.listContainer::-webkit-scrollbar {
+  width: 5px;
+}
+
+.listContainer::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+}
+
+.listContainer::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+}
+
+.historyCard {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 100%;
+  transition: background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.historyCard:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
+}
+
+.historyCardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.historyCardTitle {
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.historyCardDate {
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.historyTrashButton {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(210, 80, 60, 0.12);
+  border: 1px solid rgba(220, 100, 80, 0.38);
+  color: #e07060;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
+}
+
+.historyTrashButton:hover {
+  background: rgba(210, 80, 60, 0.26);
+  border-color: rgba(240, 110, 90, 0.6);
+  color: #ff8575;
+  transform: scale(1.06);
+}
+
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
+.panelGrainOverlay,
+.grainOverlay {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: var(--grain-svg);
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .topBar {
+    top: 20px;
+    left: 20px;
+  }
+
+  .panel {
+    padding: 22px 20px;
+    height: 75vh;
+  }
+}

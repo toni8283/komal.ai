@@ -1,0 +1,339 @@
+.homeContainer {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: #1a1210;
+  color: #f7ede8;
+}
+
+/* ==========================================================================
+   Backdrop: Deep Dark Warm Blurred Image + Vignette + SVG Film Grain
+   ========================================================================== */
+.backdropLayer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.backdropImage {
+  position: absolute;
+  top: -160px;
+  left: -160px;
+  right: -160px;
+  bottom: -160px;
+  background-size: cover;
+  background-position: center;
+  filter: blur(100px);
+  -webkit-filter: blur(100px);
+  transform: scale(1.15);
+  opacity: 0.75;
+  transition: background-image 1.2s ease-in-out;
+  will-change: filter, transform;
+}
+
+.backdropTint {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      circle at 75% 45%,
+      rgba(200, 140, 110, 0.25) 0%,
+      rgba(40, 24, 20, 0.6) 60%,
+      rgba(20, 12, 10, 0.85) 100%
+    ),
+    linear-gradient(180deg, rgba(20, 12, 10, 0.3) 0%, rgba(20, 12, 10, 0.5) 100%);
+  pointer-events: none;
+}
+
+.grainOverlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  opacity: 0.38;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Main Split Screen Layout (Left: 2x3 Grid, Right: Editorial Text)
+   ========================================================================== */
+.mainContent {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 46% 54%;
+  align-items: stretch;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* ==========================================================================
+   Left Column: 2x3 Image Collage Grid
+   ========================================================================== */
+.gallerySection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.imageGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 100%;
+  height: 100%;
+  gap: 0;
+}
+
+.imageTile {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #18100e;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    filter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.6s ease;
+}
+
+.tilePhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 1.2s ease, filter 0.8s ease;
+}
+
+.tileNoiseOverlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.25'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 140px 140px;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.tileShade {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.28);
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+/* Active Tile States */
+.activeTile {
+  z-index: 5;
+  filter: brightness(1.05) contrast(1.04);
+}
+
+.activeTile .tilePhoto {
+  transform: scale(1.04);
+}
+
+.activeTile .tileShade {
+  opacity: 0;
+}
+
+.inactiveTile {
+  filter: brightness(0.82) contrast(0.95);
+  opacity: 0.78;
+}
+
+.inactiveTile:hover {
+  opacity: 0.95;
+  filter: brightness(0.95);
+}
+
+/* ==========================================================================
+   Right Column: Editorial Content
+   ========================================================================== */
+.textSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 8% 80px 10%;
+  position: relative;
+}
+
+.editorialWrap {
+  max-width: 620px;
+}
+
+.headingBlock {
+  margin-bottom: 32px;
+}
+
+.headline {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-serif, 'Instrument Serif', 'Cormorant Garamond', serif);
+  font-size: clamp(3.2rem, 5.5vw, 5.6rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: #f7ede8;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.titleLine1 {
+  font-style: normal;
+  color: #f4eae4;
+}
+
+.titleLine2 {
+  font-style: italic;
+  color: #eed6c8;
+}
+
+.description {
+  font-family: var(--font-space, 'Space Grotesk', 'Space Mono', sans-serif);
+  font-size: clamp(1.05rem, 1.4vw, 1.35rem);
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0.04em;
+  color: #dfcec4;
+  margin: 0;
+  max-width: 520px;
+}
+
+/* ==========================================================================
+   Bottom-Right CTA Button (start talking + arrow)
+   ========================================================================== */
+.ctaWrapper {
+  position: absolute;
+  bottom: 48px;
+  right: 8%;
+  display: flex;
+  align-items: center;
+}
+
+.ctaGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.25s ease;
+}
+
+.ctaGroup:hover {
+  transform: translateY(-2px);
+}
+
+.startPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  padding: 0 32px;
+  border-radius: 999px;
+  background: rgba(198, 178, 164, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #1a120e;
+  font-family: var(--font-serif, 'Instrument Serif', 'Cormorant Garamond', serif);
+  font-size: 1.45rem;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.arrowCircle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(198, 178, 164, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #1a120e;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.ctaGroup:hover .startPill,
+.ctaGroup:hover .arrowCircle {
+  background: rgba(220, 202, 190, 0.78);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.ctaGroup:hover .arrowSvg {
+  transform: translate(2px, -2px);
+}
+
+.arrowSvg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.25s ease;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .mainContent {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .gallerySection {
+    height: 55vh;
+  }
+
+  .textSection {
+    padding: 60px 8% 120px 8%;
+  }
+
+  .ctaWrapper {
+    position: static;
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .gallerySection {
+    height: 45vh;
+  }
+
+  .textSection {
+    padding: 40px 6% 100px 6%;
+  }
+
+  .headline {
+    font-size: 2.8rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .startPill {
+    height: 46px;
+    padding: 0 24px;
+    font-size: 1.25rem;
+  }
+
+  .arrowCircle {
+    width: 46px;
+    height: 46px;
+  }
+}
